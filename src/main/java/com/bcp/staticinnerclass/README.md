@@ -23,6 +23,20 @@ Contiene tres tipos de clases anidadas estáticas:
 
 **Incluye método main** para demostrar todas las funcionalidades.
 
+### Order.java
+Ejemplo práctico de clase anidada estática privada:
+
+1. **Clase Anidada Estática Privada** (`ShippingMode`)
+   - Representa modos de envío con descripción y costo
+   - Solo accesible a través de métodos públicos de Order
+   - Ejemplo: `Order.createShippingMode("Fast");`
+
+2. **Métodos Públicos Estáticos**
+   - `createShippingMode(String description)` - Crea instancias de ShippingMode
+   - `getShippingMode(String description)` - Retorna instancias de ShippingMode
+
+**Incluye método main** con ejemplos prácticos de uso.
+
 ### SimpleExample.java
 Ejemplo simple basado en el código mostrado en la imagen:
 
@@ -33,6 +47,14 @@ Ejemplo simple basado en el código mostrado en la imagen:
    - Demuestra acceso a través de método público: `SimpleExample.createInstance();`
 
 **Incluye método main** con ejemplos básicos.
+
+### OrderPatternDemo.java
+Demo que muestra el patrón conceptual de la imagen:
+
+- Simula el diagrama conceptual mostrado en la imagen
+- Demuestra la relación entre instancias de Order y ShippingMode
+- Explica las restricciones de acceso y encapsulación
+- Muestra el patrón de diseño en acción
 
 ### StaticNestedClassDemo.java
 Demuestra cómo trabajar con cada tipo de clase anidada estática:
@@ -49,8 +71,21 @@ Demuestra cómo trabajar con cada tipo de clase anidada estática:
 - **Públicas** pueden ser instanciadas desde cualquier lugar
 - **Package-private** pueden ser instanciadas dentro del mismo paquete
 - **Privadas** solo pueden ser instanciadas dentro de la clase externa
+- **Encapsulación** permite controlar el acceso a funcionalidad relacionada
 
 ## Ejecutar los Demos
+
+### Ejemplo Order con ShippingMode:
+```bash
+javac src/main/java/com/bcp/staticinnerclass/Order.java
+java -cp src/main/java com.bcp.staticinnerclass.Order
+```
+
+### Patrón Conceptual:
+```bash
+javac src/main/java/com/bcp/staticinnerclass/OrderPatternDemo.java
+java -cp src/main/java com.bcp.staticinnerclass.OrderPatternDemo
+```
 
 ### Demo Completo (Outer.java):
 ```bash
@@ -77,4 +112,6 @@ Los demos mostrarán:
 2. Explicación de por qué la clase anidada estática privada no puede ser instanciada directamente
 3. Acceso a clase anidada package-private a través de método público
 4. Instanciación directa de clase anidada package-private dentro del mismo paquete
-5. Demostración del uso de clase anidada privada dentro de la clase externa 
+5. Demostración del uso de clase anidada privada dentro de la clase externa
+6. Patrón de encapsulación con ShippingMode en Order
+7. Diagrama conceptual de las relaciones entre clases 
