@@ -33,7 +33,85 @@ Ejemplos de interfaces funcionales de un solo argumento.
 Ejemplos de composición de funciones usando `andThen()`.
 
 ### 9. `AlternativeToFlatMapExample.java`
-**NUEVO** - Alternativas a `flatMap` para procesar estructuras anidadas.
+Alternativas a `flatMap` para procesar estructuras anidadas.
+
+### 10. `TerminalOperationsExample.java`
+**NUEVO** - Operaciones terminales de matching y finding (`allMatch`, `anyMatch`, `noneMatch`, `findAny`, `findFirst`).
+
+## Operaciones Terminales de Matching y Finding
+
+### Operaciones de Matching
+Estas operaciones verifican condiciones sobre los elementos del stream y devuelven un `boolean`.
+
+#### 1. **allMatch(Predicate<T>)**
+Verifica si **TODOS** los elementos cumplen la condición.
+```java
+String[] values = {"RED", "GREEN", "BLUE"};
+boolean allGreen = Arrays.stream(values).allMatch(s -> s.equals("GREEN"));
+// Resultado: false (no todos son "GREEN")
+```
+
+#### 2. **anyMatch(Predicate<T>)**
+Verifica si **AL MENOS UNO** cumple la condición.
+```java
+boolean anyGreen = Arrays.stream(values).anyMatch(s -> s.equals("GREEN"));
+// Resultado: true (hay al menos un "GREEN")
+```
+
+#### 3. **noneMatch(Predicate<T>)**
+Verifica si **NINGUNO** cumple la condición.
+```java
+boolean noneGreen = Arrays.stream(values).noneMatch(s -> s.equals("GREEN"));
+// Resultado: false (hay al menos un "GREEN")
+```
+
+### Operaciones de Finding
+Estas operaciones encuentran elementos específicos y devuelven un `Optional<T>`.
+
+#### 4. **findAny()**
+Encuentra **CUALQUIER** elemento del stream (no garantiza cuál).
+```java
+Optional<String> anyColour = Arrays.stream(values).findAny();
+// Resultado: Optional["RED"] (o cualquier otro color)
+```
+
+#### 5. **findFirst()**
+Encuentra el **PRIMER** elemento en el orden del stream.
+```java
+Optional<String> firstColour = Arrays.stream(values).findFirst();
+// Resultado: Optional["RED"] (el primer elemento)
+```
+
+### Características Importantes
+
+- **Short-circuiting**: Estas operaciones pueden terminar antes de procesar todo el stream
+- **Optional**: Las operaciones de finding devuelven `Optional` para manejar streams vacíos
+- **Predicate**: Las operaciones de matching usan `Predicate<T>` para las condiciones
+- **Orden**: `findFirst()` respeta el orden, `findAny()` no garantiza orden específico
+
+### Casos de Uso Comunes
+
+#### Validación de Datos
+```java
+// Verificar que todos los productos tienen precio positivo
+boolean allValid = products.stream()
+    .allMatch(p -> p.getPrice().compareTo(BigDecimal.ZERO) > 0);
+```
+
+#### Búsqueda de Elementos
+```java
+// Encontrar el primer producto con descuento
+Optional<Product> discountedProduct = products.stream()
+    .filter(p -> p.getDiscount() > 0)
+    .findFirst();
+```
+
+#### Verificación de Condiciones
+```java
+// Verificar si hay productos caros
+boolean hasExpensiveProducts = products.stream()
+    .anyMatch(p -> p.getPrice().compareTo(BigDecimal.valueOf(100)) > 0);
+```
 
 ## Alternativas a FlatMap
 
@@ -397,6 +475,9 @@ java com.bcp.streamssamples.AndThenExample
 
 # Ejecutar alternativas a flatMap
 java com.bcp.streamssamples.AlternativeToFlatMapExample
+
+# Ejecutar operaciones terminales de matching y finding
+java com.bcp.streamssamples.TerminalOperationsExample
 ```
 
 ## Mejores Prácticas
