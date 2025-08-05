@@ -65,12 +65,65 @@ list.sort((s1, s2) -> {
 Collections.sort(list, sortText);
 ```
 
+### 5. `TextFilter.java`
+Clase utilitaria con métodos para filtrado y ordenamiento:
+
+```java
+public class TextFilter {
+    public static boolean removeA(String s) {
+        return s.equals("remove A");
+    }
+
+    public int sortText(String s1, String s2) {
+        return s1.compareTo(s2);
+    }
+}
+```
+
+### 6. `TextFilterExample.java`
+Ejemplo que demuestra **Method References** (referencias a métodos):
+
+**removeIf con lambda vs method reference:**
+```java
+// Con lambda expression
+list.removeIf(s -> TextFilter.removeA(s));
+
+// Con method reference (más conciso)
+list.removeIf(TextFilter::removeA); // mismo que la línea anterior
+```
+
+**Collections.sort con lambda vs method reference:**
+```java
+// Con lambda expression
+Collections.sort(list, (s1, s2) -> filter.sortText(s1, s2));
+
+// Con method reference (más conciso)
+Collections.sort(list, filter::sortText); // mismo que la línea anterior
+
+// Con lambda para String.compareToIgnoreCase
+Collections.sort(list, (s1, s2) -> s1.compareToIgnoreCase(s2));
+
+// Con method reference para String.compareToIgnoreCase
+Collections.sort(list, String::compareToIgnoreCase); // mismo que la línea anterior
+```
+
 ## Ventajas de las Lambda Expressions
 
 1. **Código más conciso**: Reduce la verbosidad del código
 2. **Mejor legibilidad**: La intención del código es más clara
 3. **Menos boilerplate**: No necesitas escribir clases anónimas completas
 4. **Funcional**: Permite programación funcional en Java
+
+## Method References
+
+Los **Method References** son una forma aún más concisa de escribir lambda expressions cuando la lambda simplemente llama a un método existente.
+
+### Tipos de Method References:
+
+1. **Método estático**: `Clase::metodoEstatico`
+2. **Método de instancia**: `objeto::metodoInstancia`
+3. **Método de instancia de clase**: `Clase::metodoInstancia`
+4. **Constructor**: `Clase::new`
 
 ## Cómo Ejecutar
 
@@ -86,6 +139,9 @@ java com.bcp.lambda.LambdaSortingExample
 
 # Ejecutar ejemplo con variaciones de sintaxis
 java com.bcp.lambda.LambdaVariationsExample
+
+# Ejecutar ejemplo con method references
+java com.bcp.lambda.TextFilterExample
 ```
 
 ## Sintaxis de Lambda
@@ -111,4 +167,20 @@ java com.bcp.lambda.LambdaVariationsExample
 
 // Con final
 (final String s) -> s.equals("remove me")
+```
+
+## Sintaxis de Method References
+
+```java
+// Método estático
+Clase::metodoEstatico
+
+// Método de instancia
+objeto::metodoInstancia
+
+// Método de instancia de clase
+Clase::metodoInstancia
+
+// Constructor
+Clase::new
 ``` 
