@@ -36,7 +36,95 @@ Ejemplos de composición de funciones usando `andThen()`.
 Alternativas a `flatMap` para procesar estructuras anidadas.
 
 ### 10. `TerminalOperationsExample.java`
-**NUEVO** - Operaciones terminales de matching y finding (`allMatch`, `anyMatch`, `noneMatch`, `findAny`, `findFirst`).
+Operaciones terminales de matching y finding (`allMatch`, `anyMatch`, `noneMatch`, `findAny`, `findFirst`).
+
+### 11. `StreamCalculationsExample.java`
+**NUEVO** - Operaciones de cálculo con streams (`filter`, `count`, `mapToInt`, `sum`, `average`, `max`, `min`).
+
+## Operaciones de Cálculo con Streams
+
+### Operaciones de Filtrado y Conteo
+
+#### 1. **Filter y Count**
+Filtra elementos y cuenta cuántos cumplen la condición.
+```java
+String[] values = {"RED", "GREEN", "BLUE"};
+long v1 = Arrays.stream(values).filter(s -> s.indexOf('R') != -1).count();
+// Resultado: 2 (RED y GREEN contienen 'R')
+```
+
+### Operaciones de Mapeo y Agregación
+
+#### 2. **MapToInt y Sum**
+Transforma elementos a enteros y suma los resultados.
+```java
+int v2 = Arrays.stream(values).mapToInt(v -> v.length()).sum();
+// Resultado: 12 (3 + 5 + 4 = 12)
+```
+
+#### 3. **MapToInt y Average**
+Transforma elementos a enteros y calcula el promedio.
+```java
+OptionalDouble v3 = Arrays.stream(values).mapToInt(v -> v.length()).average();
+double avgValue = v3.isPresent() ? v3.getAsDouble() : 0;
+// Resultado: 4.0 ((3 + 5 + 4) / 3 = 4)
+```
+
+### Operaciones de Extremos
+
+#### 4. **Max con Comparator**
+Encuentra el elemento máximo según un criterio.
+```java
+Optional<String> v4 = Arrays.stream(values).max((s1, s2) -> s1.compareTo(s2));
+String maxValue = (v4.isPresent()) ? v4.get() : "no data";
+// Resultado: "RED" (lexicográficamente mayor)
+```
+
+#### 5. **Min con Comparator**
+Encuentra el elemento mínimo según un criterio.
+```java
+Optional<String> v5 = Arrays.stream(values).min((s1, s2) -> s1.compareTo(s2));
+String minValue = (v5.isPresent()) ? v5.get() : "no data";
+// Resultado: "BLUE" (lexicográficamente menor)
+```
+
+### Características Importantes
+
+- **Optional**: Las operaciones `average()`, `max()` y `min()` devuelven `Optional` para manejar streams vacíos
+- **Primitive Streams**: `mapToInt()` convierte a `IntStream` para operaciones con primitivos
+- **Comparator**: `max()` y `min()` requieren un `Comparator` para definir el orden
+- **Short-circuiting**: Algunas operaciones pueden terminar antes de procesar todo el stream
+
+### Casos de Uso Comunes
+
+#### Análisis de Datos
+```java
+// Calcular estadísticas de productos
+double avgPrice = products.stream()
+    .mapToDouble(p -> p.getPrice().doubleValue())
+    .average()
+    .orElse(0.0);
+
+Product mostExpensive = products.stream()
+    .max((p1, p2) -> p1.getPrice().compareTo(p2.getPrice()))
+    .orElse(null);
+```
+
+#### Filtrado y Conteo
+```java
+// Contar productos caros
+long expensiveCount = products.stream()
+    .filter(p -> p.getPrice().compareTo(BigDecimal.valueOf(100)) > 0)
+    .count();
+```
+
+#### Transformación y Agregación
+```java
+// Suma de precios con descuento
+double totalDiscounted = products.stream()
+    .mapToDouble(p -> p.getPrice().doubleValue() * (1 - p.getDiscount()))
+    .sum();
+```
 
 ## Operaciones Terminales de Matching y Finding
 
@@ -478,6 +566,9 @@ java com.bcp.streamssamples.AlternativeToFlatMapExample
 
 # Ejecutar operaciones terminales de matching y finding
 java com.bcp.streamssamples.TerminalOperationsExample
+
+# Ejecutar operaciones de cálculo con streams
+java com.bcp.streamssamples.StreamCalculationsExample
 ```
 
 ## Mejores Prácticas
