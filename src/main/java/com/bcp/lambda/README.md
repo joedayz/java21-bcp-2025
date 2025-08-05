@@ -38,6 +38,33 @@ Collections.sort(products, (p1, p2) -> p1.getPrice().compareTo(p2.getPrice()));
 ### 3. `LambdaSortingExample.java`
 Ejemplo más completo con múltiples variaciones de ordenamiento usando lambda expressions.
 
+### 4. `LambdaVariationsExample.java`
+Ejemplo que demuestra diferentes sintaxis de lambda expressions:
+
+**Comparator con lambda:**
+```java
+Comparator<String> sortText = (s1, s2) -> s1.compareTo(s2);
+```
+
+**removeIf con diferentes sintaxis:**
+```java
+list.removeIf((final String s) -> s.equals("remove me"));
+list.removeIf((final var s) -> s.equals("remove me"));
+list.removeIf(s -> s.equals("remove me"));
+```
+
+**sort con lambda y bloque:**
+```java
+list.sort((s1, s2) -> { 
+    return s1.compareTo(s2); 
+});
+```
+
+**Collections.sort con comparator predefinido:**
+```java
+Collections.sort(list, sortText);
+```
+
 ## Ventajas de las Lambda Expressions
 
 1. **Código más conciso**: Reduce la verbosidad del código
@@ -56,6 +83,9 @@ java com.bcp.lambda.SimpleLambdaExample
 
 # Ejecutar ejemplo completo
 java com.bcp.lambda.LambdaSortingExample
+
+# Ejecutar ejemplo con variaciones de sintaxis
+java com.bcp.lambda.LambdaVariationsExample
 ```
 
 ## Sintaxis de Lambda
@@ -72,4 +102,13 @@ java com.bcp.lambda.LambdaSortingExample
     // lógica compleja aquí
     return resultado;
 }
+
+// Con parámetros tipados
+(String s1, String s2) -> s1.compareTo(s2)
+
+// Con var (Java 11+)
+(var s1, var s2) -> s1.compareTo(s2)
+
+// Con final
+(final String s) -> s.equals("remove me")
 ``` 
