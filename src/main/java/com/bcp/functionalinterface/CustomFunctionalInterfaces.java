@@ -9,13 +9,17 @@ import java.util.List;
  * y usarlas con clases anónimas
  */
 public class CustomFunctionalInterfaces {
-    
+
     /**
      * Interfaz funcional personalizada para calcular descuentos
      */
     @FunctionalInterface
     public interface DiscountCalculator {
         BigDecimal calculateDiscount(Product product);
+
+        String toString() ;
+        boolean equals(Object obj);
+        int hashCode();
     }
     
     /**
