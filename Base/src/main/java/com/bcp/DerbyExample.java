@@ -39,7 +39,7 @@ public class DerbyExample {
     }
     
     /**
-     * Crea una tabla de ejemplo
+     * Crea una tabla de ejemplo si no existe
      */
     public void createTable() throws SQLException {
         String createTableSQL = """
@@ -57,6 +57,15 @@ public class DerbyExample {
             
             stmt.execute(createTableSQL);
             System.out.println("Tabla 'empleados' creada exitosamente");
+            
+        } catch (SQLException e) {
+            // Si la tabla ya existe, mostrar un mensaje informativo
+            if (e.getSQLState().equals("X0Y32")) {
+                System.out.println("La tabla 'empleados' ya existe. Continuando...");
+            } else {
+                // Si es otro error, relanzar la excepción
+                throw e;
+            }
         }
     }
     
@@ -78,6 +87,15 @@ public class DerbyExample {
             insertEmployee(pstmt, 3, "Carlos", "López", 55000.00, "2023-03-10");
             
             System.out.println("Datos insertados exitosamente");
+            
+        } catch (SQLException e) {
+            // Si los datos ya existen, mostrar un mensaje informativo
+            if (e.getSQLState().equals("23505")) { // Violación de clave primaria
+                System.out.println("Los datos ya existen en la tabla. Continuando...");
+            } else {
+                // Si es otro error, relanzar la excepción
+                throw e;
+            }
         }
     }
     

@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"demos.api","c":"Some","l":"a()"},{"p":"demos.api","c":"Some","l":"b()"},{"p":"demos.api","c":"Some","l":"Some()","u":"%3Cinit%3E()"}];updateSearchResults();
