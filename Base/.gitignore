@@ -15,3 +15,12 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# Apache Derby Database files
+bcpDB/
+*.db
+derby.log
+derbyout.log
+
+# Mods folder
+mods/
