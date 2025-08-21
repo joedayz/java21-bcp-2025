@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Modulos.iml" filepath="$PROJECT_DIR$/.idea/Modulos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProductManagement/src/application/application.iml" filepath="$PROJECT_DIR$/ProductManagement/src/application/application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProductManagement/src/demos.pm/demos.pm.iml" filepath="$PROJECT_DIR$/ProductManagement/src/demos.pm/demos.pm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProductManagement/src/demos.shop/demos.shop.iml" filepath="$PROJECT_DIR$/ProductManagement/src/demos.shop/demos.shop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProductManagement/src/provider/provider.iml" filepath="$PROJECT_DIR$/ProductManagement/src/provider/provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProductManagement/src/service/service.iml" filepath="$PROJECT_DIR$/ProductManagement/src/service/service.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="mods">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ProductManagement/mods/service.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ProductManagement/mods/application.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ProductManagement/mods/demos.shop.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ProductManagement/mods/provider.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ProductManagement/mods/demos.pm.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
