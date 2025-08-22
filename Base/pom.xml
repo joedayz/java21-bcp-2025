@@ -21,7 +21,7 @@
             <artifactId>derby</artifactId>
             <version>10.17.1.0</version>
         </dependency>
-
+        
         <!-- Derby Tools (optional, for database management) -->
         <dependency>
             <groupId>org.apache.derby</groupId>
@@ -42,4 +42,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
