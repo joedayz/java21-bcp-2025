@@ -16,7 +16,7 @@ public class RawTypesWarningsDemo {
         
         // Este código generará warnings del compilador
         List<Food> foods = new ArrayList<Food>();
-        foods.add(new Food("Pizza"));
+        foods.add(new Food("Pizza", 12.99));
         
         // ⚠️ WARNING: Raw type assignment
         List values = foods; // Raw type - genera warning
@@ -25,7 +25,7 @@ public class RawTypesWarningsDemo {
         List<Product> products = values; // Raw type - genera warning
         
         // ⚠️ WARNING: Unchecked call to add()
-        products.add(new Drink("Tea")); // Peligroso pero compila
+        products.add(new Drink("Tea", 3.99)); // Peligroso pero compila
         
         System.out.println("Código ejecutado con raw types");
         System.out.println("Revisa los warnings del compilador!");

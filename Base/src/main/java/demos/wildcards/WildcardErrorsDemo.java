@@ -65,12 +65,12 @@ public class WildcardErrorsDemo {
         
         // Crear listas específicas
         List<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("Pizza"));
-        foodList.add(new Food("Burger"));
+        foodList.add(new Food("Pizza", 12.99));
+        foodList.add(new Food("Burger", 12.99));
         
         List<Drink> drinkList = new ArrayList<>();
-        drinkList.add(new Drink("Coffee"));
-        drinkList.add(new Drink("Tea"));
+        drinkList.add(new Drink("Coffee", 3.99));
+        drinkList.add(new Drink("Tea", 3.99));
         
         // Asignar a wildcards
         List<?> unknown1 = foodList;

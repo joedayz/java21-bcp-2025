@@ -36,10 +36,10 @@ public class GenericsTypeHierarchyDemo {
             Product[] products = new Food[10]; // ✅ Válido - arrays son covariantes
             System.out.println("   ✅ Product[] products = new Food[10]; // Compila correctamente");
             
-            products[0] = new Food("Pizza");
+            products[0] = new Food("Pizza", 12.99);
             System.out.println("   ✅ products[0] = new Food(\"Pizza\"); // Funciona");
             
-            products[1] = new Drink("Tea"); // ❌ Esto causará ArrayStoreException
+            products[1] = new Drink("Tea", 3.99); // ❌ Esto causará ArrayStoreException
             System.out.println("   ❌ products[1] = new Drink(\"Tea\"); // Causará ArrayStoreException");
             
         } catch (ArrayStoreException e) {
@@ -76,7 +76,7 @@ public class GenericsTypeHierarchyDemo {
         System.out.println("   Los raw types eluden las verificaciones de genéricos\n");
         
         List<Food> foods = new ArrayList<Food>();
-        foods.add(new Food("Pizza"));
+        foods.add(new Food("Pizza", 12.99));
         System.out.println("   ✅ List<Food> foods = new ArrayList<Food>();");
         System.out.println("   ✅ foods.add(new Food(\"Pizza\"));");
         
@@ -89,7 +89,7 @@ public class GenericsTypeHierarchyDemo {
         System.out.println("   ⚠️ List<Product> products = values; // Raw type - genera warning");
         
         // ⚠️ WARNING: Unchecked call to add()
-        products.add(new Drink("Tea")); // Peligroso pero compila
+        products.add(new Drink("Tea", 3.99)); // Peligroso pero compila
         System.out.println("   ⚠️ products.add(new Drink(\"Tea\")); // Peligroso pero compila");
         System.out.println("   💡 Ahora 'foods' (List<Food>) contiene un Drink!");
         

@@ -1,5 +1,8 @@
 package demos.wildcards;
 
+import demos.genericos.Drink;
+import demos.genericos.Food;
+
 import java.util.List;
 
 /**

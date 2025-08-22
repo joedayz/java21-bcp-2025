@@ -27,6 +27,18 @@ java -cp "src/main/java" demos.wildcards.WildcardUtils
 
 echo.
 echo ========================================
+echo Ejecutando demo de Upper Bound Wildcard...
+echo ========================================
+java -cp "src/main/java" demos.wildcards.UpperBoundWildcardDemo
+
+echo.
+echo ========================================
+echo Ejecutando demo de casos prácticos Upper Bound...
+echo ========================================
+java -cp "src/main/java" demos.wildcards.UpperBoundUtils
+
+echo.
+echo ========================================
 echo Todos los demos de wildcards completados!
 echo ========================================
 pause
