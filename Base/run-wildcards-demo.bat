@@ -39,6 +39,24 @@ java -cp "src/main/java" demos.wildcards.UpperBoundUtils
 
 echo.
 echo ========================================
+echo Ejecutando demo de Lower Bound Wildcard...
+echo ========================================
+java -cp "src/main/java" demos.wildcards.LowerBoundWildcardDemo
+
+echo.
+echo ========================================
+echo Ejecutando demo de casos prácticos Lower Bound...
+echo ========================================
+java -cp "src/main/java" demos.wildcards.LowerBoundUtils
+
+echo.
+echo ========================================
+echo Ejecutando demo de comparación de wildcards...
+echo ========================================
+java -cp "src/main/java" demos.wildcards.WildcardComparisonDemo
+
+echo.
+echo ========================================
 echo Todos los demos de wildcards completados!
 echo ========================================
 pause
