@@ -16,5 +16,15 @@ public class RecordMain {
         if (obj instanceof Delivery(Product(String name, double price), var time)) {
             System.out.println(name + " " + price + " " + time);
         }
+
+        String result = switch (obj){
+          case null -> "No data" ;
+          case Delivery d when d.time().isBefore(LocalDateTime.now()) -> "Delivered";
+          case Delivery d -> "Due " + d.time();
+          default -> obj.toString();
+        };
+
+        System.out.println(result);
+
     }
 }
