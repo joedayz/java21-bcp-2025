@@ -11,7 +11,8 @@ public class Main {
                 new Product("Cake")
         };
 
-        Arrays.sort(products); // usa compareTo
+        //Arrays.sort(products); // usa compareTo
+        Arrays.sort(products, new ProductNameSorter());
 
         for (Product p : products) {
             System.out.println(p);

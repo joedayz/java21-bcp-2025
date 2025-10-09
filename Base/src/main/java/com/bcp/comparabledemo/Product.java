@@ -1,10 +1,24 @@
 package com.bcp.comparabledemo;
 
-public class Product  implements Comparable<Product> {
+public class Product  implements Comparable<Product>, Cloneable {
     private String name;
 
     public Product(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Sobrescribimos clone()
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override
