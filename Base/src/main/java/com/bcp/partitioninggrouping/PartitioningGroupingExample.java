@@ -109,13 +109,13 @@ public class PartitioningGroupingExample {
 
         // Ejemplo del código de la imagen
         Map<LocalDate, List<Product>> productGroups = list.stream()
-            .collect(Collectors.groupingBy(p -> p.getBestBefore()));
+                .collect(Collectors.groupingBy(p -> p.getBestBefore()));
 
         System.out.println("Productos agrupados por fecha de vencimiento:");
         productGroups.forEach((date, products) -> {
             System.out.println("Fecha: " + date);
             products.forEach(p ->
-                System.out.println("  - " + p.getName() + ": $" + p.getPrice() + " (" + p.getCategory() + ")"));
+                    System.out.println("  - " + p.getName() + ": $" + p.getPrice() + " (" + p.getCategory() + ")"));
         });
         System.out.println();
 
@@ -124,51 +124,51 @@ public class PartitioningGroupingExample {
 
         // Grouping por categoría
         Map<String, List<Product>> byCategory = list.stream()
-            .collect(Collectors.groupingBy(Product::getCategory));
+                .collect(Collectors.groupingBy(Product::getCategory));
 
         System.out.println("Productos agrupados por categoría:");
         byCategory.forEach((category, products) -> {
             System.out.println("Categoría: " + category);
             products.forEach(p ->
-                System.out.println("  - " + p.getName() + ": $" + p.getPrice() + " (Vence: " + p.getBestBefore() + ")"));
+                    System.out.println("  - " + p.getName() + ": $" + p.getPrice() + " (Vence: " + p.getBestBefore() + ")"));
         });
         System.out.println();
 
         // Grouping por mes de vencimiento
         Map<String, List<Product>> byMonth = list.stream()
-            .collect(Collectors.groupingBy(p -> p.getBestBefore().getMonth().toString()));
+                .collect(Collectors.groupingBy(p -> p.getBestBefore().getMonth().toString()));
 
         System.out.println("Productos agrupados por mes de vencimiento:");
         byMonth.forEach((month, products) -> {
             System.out.println("Mes: " + month);
             products.forEach(p ->
-                System.out.println("  - " + p.getName() + " (Vence: " + p.getBestBefore() + ")"));
+                    System.out.println("  - " + p.getName() + " (Vence: " + p.getBestBefore() + ")"));
         });
         System.out.println();
 
         // Grouping con conteo
         Map<String, Long> countByCategory = list.stream()
-            .collect(Collectors.groupingBy(Product::getCategory, Collectors.counting()));
+                .collect(Collectors.groupingBy(Product::getCategory, Collectors.counting()));
 
         System.out.println("Conteo de productos por categoría:");
         countByCategory.forEach((category, count) ->
-            System.out.println("  " + category + ": " + count + " productos"));
+                System.out.println("  " + category + ": " + count + " productos"));
         System.out.println();
 
         // Grouping con suma de precios
         Map<String, Double> sumByCategory = list.stream()
-            .collect(Collectors.groupingBy(Product::getCategory,
-                Collectors.summingDouble(p -> p.getPrice().doubleValue())));
+                .collect(Collectors.groupingBy(Product::getCategory,
+                        Collectors.summingDouble(p -> p.getPrice().doubleValue())));
 
         System.out.println("Suma de precios por categoría:");
         sumByCategory.forEach((category, sum) ->
-            System.out.println("  " + category + ": $" + String.format("%.2f", sum)));
+                System.out.println("  " + category + ": $" + String.format("%.2f", sum)));
         System.out.println();
 
         // Grouping con múltiples collectors
         Map<String, Map<LocalDate, List<Product>>> byCategoryAndDate = list.stream()
-            .collect(Collectors.groupingBy(Product::getCategory,
-                Collectors.groupingBy(Product::getBestBefore)));
+                .collect(Collectors.groupingBy(Product::getCategory,
+                        Collectors.groupingBy(Product::getBestBefore)));
 
         System.out.println("Productos agrupados por categoría y fecha:");
         byCategoryAndDate.forEach((category, dateMap) -> {
@@ -176,7 +176,7 @@ public class PartitioningGroupingExample {
             dateMap.forEach((date, products) -> {
                 System.out.println("  Fecha: " + date);
                 products.forEach(p ->
-                    System.out.println("    - " + p.getName() + ": $" + p.getPrice()));
+                        System.out.println("    - " + p.getName() + ": $" + p.getPrice()));
             });
         });
         System.out.println();
@@ -210,33 +210,33 @@ public class PartitioningGroupingExample {
 
         // Productos por rango de precio
         Map<String, List<Product>> byPriceRange = list.stream()
-            .collect(Collectors.groupingBy(p -> {
-                if (p.getPrice().compareTo(BigDecimal.valueOf(50)) <= 0) return "Económico";
-                else if (p.getPrice().compareTo(BigDecimal.valueOf(200)) <= 0) return "Medio";
-                else return "Premium";
-            }));
+                .collect(Collectors.groupingBy(p -> {
+                    if (p.getPrice().compareTo(BigDecimal.valueOf(50)) <= 0) return "Económico";
+                    else if (p.getPrice().compareTo(BigDecimal.valueOf(200)) <= 0) return "Medio";
+                    else return "Premium";
+                }));
 
         byPriceRange.forEach((range, products) -> {
             System.out.println("Rango " + range + ":");
             products.forEach(p ->
-                System.out.println("  - " + p.getName() + ": $" + p.getPrice()));
+                    System.out.println("  - " + p.getName() + ": $" + p.getPrice()));
         });
         System.out.println();
 
         // Productos que necesitan atención (próximos a vencer o caros)
         Map<Boolean, List<Product>> needsAttention = list.stream()
-            .collect(Collectors.partitioningBy(p ->
-                p.getBestBefore().isBefore(today.plusDays(7)) ||
-                p.getPrice().compareTo(BigDecimal.valueOf(500)) > 0));
+                .collect(Collectors.partitioningBy(p ->
+                        p.getBestBefore().isBefore(today.plusDays(7)) ||
+                                p.getPrice().compareTo(BigDecimal.valueOf(500)) > 0));
 
         System.out.println("Productos que necesitan atención:");
         System.out.println("TRUE (Necesitan atención):");
         needsAttention.get(true).forEach(p ->
-            System.out.println("  - " + p.getName() + " (Vence: " + p.getBestBefore() + ", Precio: $" + p.getPrice() + ")"));
+                System.out.println("  - " + p.getName() + " (Vence: " + p.getBestBefore() + ", Precio: $" + p.getPrice() + ")"));
 
         System.out.println("FALSE (No necesitan atención):");
         needsAttention.get(false).forEach(p ->
-            System.out.println("  - " + p.getName() + " (Vence: " + p.getBestBefore() + ", Precio: $" + p.getPrice() + ")"));
+                System.out.println("  - " + p.getName() + " (Vence: " + p.getBestBefore() + ", Precio: $" + p.getPrice() + ")"));
         System.out.println();
 
         // ========================================
@@ -248,5 +248,6 @@ public class PartitioningGroupingExample {
         System.out.println("• Ambos pueden combinarse con otros collectors (counting, summing, etc.)");
         System.out.println("• Útiles para análisis de datos y reportes");
         System.out.println("• Permiten procesamiento eficiente de grandes volúmenes de datos");
+
     }
 } 
